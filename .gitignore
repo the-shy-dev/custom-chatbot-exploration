@@ -169,3 +169,14 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Virutal Env
+custom-chatbot-exploration/*
+
+# Secrets
+.env.development
+.env.testing
+.env.production
+
+# VectorDB
+vectorstore/*
