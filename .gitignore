@@ -180,3 +180,6 @@ custom-chatbot-exploration/*
 
 # VectorDB
 vectorstore/*
+
+# Pickle files for chatbot history
+*.pkl
