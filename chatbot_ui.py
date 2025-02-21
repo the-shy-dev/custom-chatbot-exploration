@@ -35,7 +35,7 @@ if uploaded_file:
     st.success(f"{uploaded_file.name} uploaded! Processing...")
 
     with st.spinner("Updating knowledge base..."):
-        subprocess.run(["python", "prepare_db.py"], check=True)
+        subprocess.run(["python", "prepare_vectordb.py"], check=True)
 
     st.success("PDF added successfully! Restart the chatbot to query the new data.")
 

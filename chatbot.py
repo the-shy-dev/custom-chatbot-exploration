@@ -12,7 +12,7 @@ class Chatbot:
         self.embedding = OpenAIEmbeddings(model="text-embedding-3-small")
 
         if not os.path.exists(db_folder) or len(os.listdir(db_folder)) == 0:
-            raise ValueError("No precomputed ChromaDB found! Run `python prepare_db.py` first.")
+            raise ValueError("No precomputed ChromaDB found! Run `python prepare_vectordb.py` first.")
 
         print("Loading precomputed VectorDB...")
         self.vectorstore = Chroma(persist_directory=db_folder, embedding_function=self.embedding)
