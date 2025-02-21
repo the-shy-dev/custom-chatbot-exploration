@@ -3,3 +3,8 @@ langchain-openai
 langchain-chroma
 streamlit
 python-dotenv
+pytesseract
+pdf2image
+pymupdf
+transformers
+pillow
