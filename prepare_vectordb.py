@@ -11,6 +11,8 @@ from langchain_community.document_loaders import PyPDFLoader
 
 load_dotenv()
 
+DEBUG_MODE = False
+
 # Set Tesseract path
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
@@ -23,7 +25,7 @@ def extract_text_from_pdf(pdf_path):
     return text.strip()
 
 def extract_text_from_images(pdf_path):
-    """Extracts text from images inside a PDF using OCR (Tesseract)."""
+    """Extracts text from images inside a PDF using OCR (Tesseract) and saves debug images."""
     doc = fitz.open(pdf_path)
     image_texts = []
 
@@ -66,6 +68,11 @@ def prepare_vector_db(pdf_folder: str = "./data", db_folder: str = "./vectorstor
         text = extract_text_from_pdf(pdf_path)
         ocr_text = extract_text_from_images(pdf_path)
         combined_text = text + "\n\n" + ocr_text if ocr_text else text
+
+        if DEBUG_MODE:
+            print("\n🔍 Extracted Text Sample (Before Storing in VectorDB):\n")
+            print(combined_text[:2000])
+            print("\n... [Truncated Output] ...\n")
 
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
         split_docs = text_splitter.create_documents([combined_text])
